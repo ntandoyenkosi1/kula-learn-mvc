@@ -1,0 +1,76 @@
+@model IEnumerable<KulaMVC.Models.Module>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+</div>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.collectionID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.shortDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.longDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.video)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.uploader)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.iat)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.collectionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.shortDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.longDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.video)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.uploader)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iat)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

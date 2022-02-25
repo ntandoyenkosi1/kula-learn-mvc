@@ -1,0 +1,146 @@
+@model IEnumerable<KulaMVC.Models.Module>
+
+@{
+    ViewData["Title"] = "Details";
+}
+<a asp-controller="Modules" asp-action="Create" asp-route-collectionID="@ViewData["collection"]" class="btn">Add
+    Modules</a>
+    <div class="container">
+        <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
+            @foreach (var item in Model)
+{
+    <div style="background-color: white;" class="shadow p-3 mb-5 rounded">
+        <h4>@item.title</h4>
+        <p>@item.shortDescription</p><a asp-controller="Modules" asp-action="Edit" asp-route-id="@item.ID"
+        class="btn">Edit</a> <a asp-controller="Modules" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+    </div>
+}
+        </div>
+    </div>
+
+@* <table class="table">
+    <thead>
+    <tr>
+    <th>
+    @Html.DisplayNameFor(model => model.collectionID)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.language)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.title)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.shortDescription)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.longDescription)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.video)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.uploader)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.iat)
+    </th>
+    <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+    <tr>
+    <td>
+    @Html.DisplayFor(modelItem => item.collectionID)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.language)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.title)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.shortDescription)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.longDescription)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.video)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.uploader)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.iat)
+    </td>
+    <td>
+    <a asp-controller="Modules" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+    <a asp-controller="Modules" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+    </td>
+    </tr>
+    }
+    </tbody>
+    </table> *@
+
+
+@* <div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="row">
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.collectionID)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.collectionID)
+    </dd>
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.title)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.title)
+    </dd>
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.shortDescription)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.shortDescription)
+    </dd>
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.imageUrl)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.imageUrl)
+    </dd>
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.createdAt)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.createdAt)
+    </dd>
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.uploader)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.uploader)
+    </dd>
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.published)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.published)
+    </dd>
+    <dt class = "col-sm-2">
+    @Html.DisplayNameFor(model => model.visibility)
+    </dt>
+    <dd class = "col-sm-10">
+    @Html.DisplayFor(model => model.visibility)
+    </dd>
+    </dl>
+    </div>
+    <div>
+    <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+    </div> *@

@@ -1,0 +1,93 @@
+@model IEnumerable<KulaMVC.Models.Course>
+@using Markdig
+@{
+    ViewData["Title"] = "Index";
+}
+<div role="alert" class="fade custom-alert alert alert-primary show">
+    <div class="alert-heading h4">
+        <h2><b>Welcome to Kula Learn</b></h2>
+    </div>
+</div>
+<div class="page-home shadow p-3 mb-5 rounded">
+    <div class="card-group">
+        <div class="card"><img class="card-img-top img-decoration rounded mx-auto d-block"
+                src="https://i.ibb.co/ZBYYGj0/course.png">
+            <div class="card-body">
+                <div class="align-center card-title h5">Browse</div>
+                <p class="align-center card-text">
+                <p>We offer beginner and more advanced courses.</p><a asp-action="Create" class="btn wide wider">Create
+                    New Course</a></p>
+            </div>
+        </div>
+        <div>
+            <div class="flexbox-container" id="cards-li">
+                <div style="background-color: white;" class="shadow p-3 mb-5 rounded offset">
+                    <h3>Hype around Blockchain</h3>
+                    <img src="https://i.ibb.co/9stx1C6/goal.png" class="rounded mx-auto d-block"
+                        style="max-height: 115px;">
+                    <div>There have been many attempts to create digital money in the past, but they have always
+                        failed.<br><br>The prevailing issue is trust. If someone creates a new currency called the X
+                        dollar, how can we trust that they won't give themselves a million X dollars, or steal your X
+                        dollars for themselves?</div>
+                    <div class="d-grid gap-2 col-6 mx-auto"><button class="btn">Preview</button><button
+                            class="btn">Delete</button><button class="btn">Edit</button></div><span>Created at:
+                        2022/1/2</span><span><br>Last modified by: Instructor</span>
+                </div>
+                @{
+                    var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+                    var html=$"## Markdown Text * Item 1 * Item 2 The current Time is: **{@DateTime.Now.ToString("HH:mm:ss")}**";
+                    var hString=Markdown.ToHtml(html, pipeline);
+                    
+                    <div>@Html.Raw(hString)</div>
+                }
+                
+                @* <markdown normalize-whitespace="true">
+                    ## Markdown Text
+                    * Item 1
+                    * Item 2
+
+                    The current Time is: *
+                </markdown> *@
+                @foreach (var item in Model)
+                {
+                    <div style="background-color: white;" class="shadow p-3 mb-5 rounded offset">
+                        <h3>@Html.DisplayFor(modelItem => item.title)</h3><img src="@item.imageUrl"
+                        class="rounded mx-auto d-block" style="max-height: 115px;">
+                        <div>@Html.DisplayFor(modelItem => item.shortDescription)</div>
+                        <div class="d-grid gap-2 col-6 mx-auto"><a asp-route-collectionID="@item.ID"
+                            asp-controller="Modules" asp-action="Preview" class="btn">Preview</a><a
+                            asp-route-id="@item.ID" asp-action="Delete" class="btn">Delete</a><a asp-route-id="@item.ID"
+                            asp-action="Edit" class="btn">Edit</a>
+                        </div><span>Created at:
+                            @{
+                                System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                                dtDateTime = dtDateTime.AddSeconds(item.createdAt).ToLocalTime();
+                            }
+                            @dtDateTime
+                        </span><span><br>Last modified by: Instructor</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @* <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function () {
+        console.log("Hello world")
+        val1 = "5";
+        val2 = "2";
+
+        $.ajax({
+        type: "POST",
+        url: "@Url.Action("Preview")",
+        data: { number1: val1, number2: val2 },
+        dataType: "text",
+        success: function (msg) {
+        console.log(msg);
+        },
+        error: function (req, status, error) {
+        console.log(msg);
+        }
+        });
+        });
+        </script> *@

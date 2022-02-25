@@ -1,0 +1,76 @@
+@model KulaMVC.Models.Module
+
+@{
+    ViewData["Title"] = "Details";
+}
+@* <div style="display: block;">
+    <div class="sidebar2">
+        <ul>
+            <li>First file</li>
+            <li>First file</li>
+        </ul>
+</div>
+</div>
+<div style="overflow:auto;">
+<section class="content"> *@
+    <h1>Details</h1>
+
+<div>
+    <h4>Module</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.collectionID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.collectionID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.language)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.language)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.shortDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.shortDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.longDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.longDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.video)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.video)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.uploader)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.uploader)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.iat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.iat)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</div>

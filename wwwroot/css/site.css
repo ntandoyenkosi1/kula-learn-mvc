@@ -1,0 +1,35 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+a{
+  color: #505d6b;
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+a::after{
+  color: #505d6b;
+}
+li.file {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

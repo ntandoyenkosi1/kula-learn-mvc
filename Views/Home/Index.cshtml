@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div role="alert" class="fade custom-alert alert alert-primary show">
+    <div class="alert-heading h4">
+        <h2>Welcome to Kula Learn</h2>
+    </div>
+</div>
+<div class="page-home shadow p-3 mb-5  rounded">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">
+            <ul>
+                <li>
+                    Use this platform to learn a new skill. Register a new account or login to gain access to our range
+                    of online courses we offer here at Kula.
+                </li>
+                <li>
+                    Sign up as an instructor to add new courses.
+                </li>
+                <li>
+                    Added courses can be made publicly available or you can add the people you want to have access to
+                    them.
+                </li>
+            </ul>
+            </p>
+        </div>
+    </div>
+    <h2><b>Why Choose Kula?</b></h2>
+    <div class="card-group">
+        <div class="card"><img class="card-img-top img-decoration rounded mx-auto d-block"
+                src="https://i.ibb.co/SQzHc5W/promotion.png">
+            <div class="card-body">
+                <div class="align-center card-title h5">Beginner and advanced</div>
+                <p class="align-center card-text"><span>Browse our range of beginner and more advanced courses.</span>
+                </p>
+            </div>
+        </div>
+        <div class="card"><img class="card-img-top img-decoration rounded mx-auto d-block"
+                src="https://i.ibb.co/kgKbcw1/blockchain.png">
+            <div class="card-body">
+                <div class="align-center card-title h5">Create courses</div>
+                <p class="align-center card-text">
+                <p>You can add custom courses that can be viewed publicly or only to the people you choose to invite.
+                </p>
+                </p>
+            </div>
+        </div>
+        <div class="card"><img class="card-img-top img-decoration rounded mx-auto d-block"
+                src="https://i.ibb.co/0YZpW7C/offline.png">
+            <div class="card-body">
+                <div class="align-center card-title h5">Offline support</div>
+                <p class="align-center card-text">
+                <p>We also offer offline support and the courses are offered in different languages. Under development
+                </p>
+                </p>
+            </div>
+        </div>
+    </div>
+    </hr>
+    <div role="alert" class="fade custom-alert alert alert-primary show">
+        <div class="alert-heading h4">
+            <h2 class="mb-0 align-center"><b>Explore one of our courses below.</b></h2>
+        </div>
+    </div>
+    <div class="text-center card" style="color: rgb(15, 81, 50);">
+        <div class="card-header">
+            <h4><b>Featured Courses</b></h4>
+        </div>
+        <div class="card-body"><a asp-controller="Courses" asp-action="Index" class="btn wide">Browse Courses</a></div>
+    </div>
+</div>
