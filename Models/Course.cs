@@ -10,10 +10,14 @@ public class Course
     public string? imageUrl {get;set;}
     public int createdAt{get;set;}
     public string? uploader{get;set;}
-    public bool published{get;set;}
+    public Publish published{get;set;}
     public Visible visibility{get;set;}
 }
-    public enum Visible{
-        Private,
-        Public
-    }
+public enum Visible{
+    Private,
+    Public
+}
+public enum Publish{
+    Now,
+    Later
+}

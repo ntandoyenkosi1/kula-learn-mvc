@@ -5,9 +5,6 @@
 }
 
 <div class="modal-content">
-    <div class="modal-header">
-        <div class="modal-title h4" id="contained-modal-title-vcenter">Add a new Module</div>
-    </div>
     <div class="modal-body">
         <div>
             <form asp-action="Edit">
@@ -16,10 +13,26 @@
                         <h1><b>Edit module</b></h1>
                     </div>
                 </div>
+
                 <div class="mb-3"><label class="form-label">Edit course title.</label>
                     <label asp-for="title" class="control-label"></label>
                     <input asp-for="title" class="form-control" />
                     <span asp-validation-for="title" class="text-danger"></span>
+                </div>
+                <div style="display: none;" class="mb-3"><label class="form-label">Edit course title.</label>
+                    <label asp-for="collectionID" class="control-label"></label>
+                    <input asp-for="collectionID" readonly class="form-control" />
+                    <span asp-validation-for="collectionID" class="text-danger"></span>
+                </div>
+                <div style="display: none;" class="mb-3"><label class="form-label">Edit course title.</label>
+                    <label asp-for="ID" class="control-label"></label>
+                    <input asp-for="ID" readonly class="form-control" />
+                    <span asp-validation-for="ID" class="text-danger"></span>
+                </div>
+                <div style="display: none;" class="mb-3"><label class="form-label">Edit course title.</label>
+                    <label asp-for="iat" class="control-label"></label>
+                    <input asp-for="iat" readonly class="form-control" />
+                    <span asp-validation-for="iat" class="text-danger"></span>
                 </div>
                 <div class="mb-3"><label class="form-label">Language. (default: English)</label>
                     <input id="language" class="form-control" type="text" readonly="" value="en">
@@ -52,87 +65,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*
-
-
-    <h1>Edit</h1>
-
-    <h4>Module</h4>
-    <hr />
-    <div class="row">
-    <div class="col-md-4">
-    <form asp-action="Edit">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ID" />
-    <div class="form-group">
-    <label asp-for="collectionID" class="control-label"></label>
-    <input asp-for="collectionID" class="form-control" />
-    <span asp-validation-for="collectionID" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="language" class="control-label"></label>
-    <input asp-for="language" class="form-control" />
-    <span asp-validation-for="language" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="title" class="control-label"></label>
-    <input asp-for="title" class="form-control" />
-    <span asp-validation-for="title" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="shortDescription" class="control-label"></label>
-    <input asp-for="shortDescription" class="form-control" />
-    <span asp-validation-for="shortDescription" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="longDescription" class="control-label"></label>
-    <input asp-for="longDescription" class="form-control" />
-    <span asp-validation-for="longDescription" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="video" class="control-label"></label>
-    <input asp-for="video" class="form-control" />
-    <span asp-validation-for="video" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="uploader" class="control-label"></label>
-    <input asp-for="uploader" class="form-control" />
-    <span asp-validation-for="uploader" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="iat" class="control-label"></label>
-    <input asp-for="iat" class="form-control" />
-    <span asp-validation-for="iat" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-    </form>
-    </div>
-    </div>
-
-    <div>
-    <a asp-action="Index">Back to List</a>
-    </div> *@
-
-@section Scripts {
-@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

@@ -6,111 +6,69 @@
 @* <a asp-action="Preview" asp-route-collectionID="@collectionID">Preview</a> *@
 
 <div>
-    <div role="alert" class="fade custom-alert alert alert-primary show">
-        <div class="alert-heading h4">
-            <h1><b>Edit a course</b></h1>
-        </div>
-    </div>
-    @* 0. *@
-    <a asp-action="Details" asp-route-id="@Model.ID" class="btn">Edit Modules</a>
-    <h4>@Model.title</h4>
-    @* 1. *@
-    <label asp-for="title" class="control-label"></label>
-    <input asp-for="title" class="form-control" />
-    <span asp-validation-for="title" class="text-danger"></span>
-</div>
-@* 2. *@
-<input id="language" class="form-control" type="text" readonly="" value="en">
-</div>
-<div class="form-floating textarea mb-3">
-    @* 3. *@
-    <label asp-for="shortDescription" class="control-label"></label>
-    <input asp-for="shortDescription" class="form-control" />
-    <span asp-validation-for="shortDescription" class="text-danger"></span>
-</div>
-<div class="form-group form-check">
-    <label class="form-check-label">
-        <input class="form-check-input" asp-for="published" /> @Html.DisplayNameFor(model =>
-        model.published)
-    </label>
-</div>
-<div class="form-group">
-    <label asp-for="visibility" class="control-label"></label>
-    <select asp-for="visibility" class="form-control"></select>
-    <span asp-validation-for="visibility" class="text-danger"></span>
-</div>
-<img alt="" class="rounded mx-auto d-block im" id="image-source" src="https://i.ibb.co/9stx1C6/goal.png"
-    style="max-width: 150px; max-height: 150px;">
-<div class="mb-3">
-    @* 4. *@
-    <label asp-for="imageUrl" class="control-label">Enter a new link below if you wish to change the image
-        above<</label>
-    <input asp-for="imageUrl" class="form-control" />
-    <span asp-validation-for="imageUrl" class="text-danger"></span>
-</div><button class="btn">Save
-    edits</button>
-</div>
-@* <h1>Edit</h1>
-
-    <h4>Course</h4>
-    <hr />
-    <div class="row">
-    <div class="col-md-4">
     <form asp-action="Edit">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ID" />
-    <div class="form-group">
-    <label asp-for="collectionID" class="control-label"></label>
-    <input asp-for="collectionID" class="form-control" />
-    <span asp-validation-for="collectionID" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="title" class="control-label"></label>
-    <input asp-for="title" class="form-control" />
-    <span asp-validation-for="title" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="shortDescription" class="control-label"></label>
-    <input asp-for="shortDescription" class="form-control" />
-    <span asp-validation-for="shortDescription" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="imageUrl" class="control-label"></label>
-    <input asp-for="imageUrl" class="form-control" />
-    <span asp-validation-for="imageUrl" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="createdAt" class="control-label"></label>
-    <input asp-for="createdAt" class="form-control" />
-    <span asp-validation-for="createdAt" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="uploader" class="control-label"></label>
-    <input asp-for="uploader" class="form-control" />
-    <span asp-validation-for="uploader" class="text-danger"></span>
-    </div>
-    <div class="form-group form-check">
-    <label class="form-check-label">
-    <input class="form-check-input" asp-for="published" /> @Html.DisplayNameFor(model =>
-    model.published)
-    </label>
-    </div>
-    <div class="form-group">
-    <label asp-for="visibility" class="control-label"></label>
-    <select asp-for="visibility" class="form-control"></select>
-    <span asp-validation-for="visibility" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
+        <div role="alert" class="fade custom-alert alert alert-primary show">
+            <div class="alert-heading h4">
+                <h1><b>Edit Course</b></h1>
+            </div>
+        </div>
+        <a asp-action="Details" asp-route-id="@Model.ID" class="btn">Edit Modules</a>
+        <h4>@Model.title</h4>
+        <div>
+            <label asp-for="title" class="control-label"><b>Update the course title.</b></label>
+            <input asp-for="title" class="form-control" />
+            <span asp-validation-for="title" class="text-danger"></span>
+        </div>
+        <div>
+            <label class="control-label"><b>Language. (default: English)</b></label>
+            <input id="language" class="form-control" type="text" readonly="" value="en">
+        </div>
+        <div class="form-floating textarea mb-3">
+            <label asp-for="shortDescription" class="control-label">Use this area to give a short description of the new
+                module.</label>
+            <textarea asp-for="shortDescription" class="form-control"></textarea>
+            <span asp-validation-for="shortDescription" class="text-danger"></span>
+        </div>
+        <div>
+            <input type="text" asp-for="imageUrl" id="imageUrl" hidden>
+        </div>
+        <div class="form-group">
+            <label asp-for="published" class="control-label"><b>Publish information.</b></label>
+            <select asp-for="published" asp-items="Html.GetEnumSelectList<Publish>()" class="form-control">
+                <option selected="selected" value="">Please select</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="visibility" class="control-label"><b>Visibility information</b></label>
+            <select asp-for="visibility" asp-items="Html.GetEnumSelectList<Visible>()" class="form-control">
+                <option selected="selected" value="">Please select</option>
+            </select>
+        </div>
+        <img alt="" class="rounded mx-auto d-block im" id="image-source" src="@Model.imageUrl"
+            style="max-width: 150px; max-height: 150px;">
+        <div class="mb-3"><label for="file" class="form-label"><b>Upload a picture for the course</b></label><input
+                class="form-control form-control-sm" onchange="handleFileUpload(this)" id="file" type="file"></div>
+        <div>
+            <input type="submit" value="Save" class="btn">
     </form>
-    </div>
-    </div>
-
-    <div>
-    <a asp-action="Index">Back to List</a>
-    </div>
-
-    @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    } *@
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    const handleFileUpload = async (e) => {
+        var input = document.getElementById("file");
+        var files = input.files;
+        const formdata = new FormData();
+        formdata.append("image", files[0], files[0].name);
+        const requestOptions = {
+            method: 'POST',
+            body: formdata,
+            redirect: 'follow'
+        };
+        await fetch("https://api.imgbb.com/1/upload?key=8d0a7e3689b931e211b03dbd58eab571", requestOptions)
+            .then(response => response.json())
+            .then((result) => {
+                alert("Image uploaded successfully.")
+                document.getElementById('imageUrl').value = result.data.url;
+            })
+    }
+</script>

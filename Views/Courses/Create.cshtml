@@ -4,72 +4,66 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Course</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <div class="form-group">
-                <label asp-for="ID" class="control-label"></label>
-                <input asp-for="ID" class="form-control" />
-                <span asp-validation-for="ID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="collectionID" class="control-label"></label>
-                <input asp-for="collectionID" class="form-control" />
-                <span asp-validation-for="collectionID" class="text-danger"></span>
-            </div> *@
-            <div class="form-group">
-                <label asp-for="title" class="control-label"></label>
-                <input asp-for="title" class="form-control" />
-                <span asp-validation-for="title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="shortDescription" class="control-label"></label>
-                <input asp-for="shortDescription" class="form-control" />
-                <span asp-validation-for="shortDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="imageUrl" class="control-label"></label>
-                <input asp-for="imageUrl" class="form-control" />
-                <span asp-validation-for="imageUrl" class="text-danger"></span>
-            </div>
-            @* <div class="form-group">
-                <label asp-for="createdAt" class="control-label"></label>
-                <input asp-for="createdAt" class="form-control" />
-                <span asp-validation-for="createdAt" class="text-danger"></span>
-            </div> *@
-            <div class="form-group">
-                <label asp-for="uploader" class="control-label"></label>
-                <input asp-for="uploader" class="form-control" />
-                <span asp-validation-for="uploader" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="published" /> @Html.DisplayNameFor(model => model.published)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="visibility" class="control-label"></label>
-                <select asp-for="visibility" asp-items="Html.GetEnumSelectList<Visible>()" class="form-control">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="visibility" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div role="alert" class="fade custom-alert alert alert-primary show">
+    <div class="alert-heading h4">
+        <h1>Create a new course</h1>
     </div>
 </div>
+<div style="background-color: white;" class="page-course shadow p-3 mb-5 rounded">
+    <h3>Course Information</h3>
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div class="input-group mb-3"><input type="text" asp-for="title" id="course-title" required="" maxlength="50"
+                class="form-control" placeholder="Enter course title"></div>
+        <div class="input-group mb-3"><input type="text" asp-for="shortDescription" id="course-description" required=""
+                maxlength="200" class="form-control" placeholder="Enter short description"></div>
+        <div class="mb-3"><label for="file" class="form-label">Upload a picture for the course</label><input
+                class="form-control form-control-sm" onchange="handleFileUpload(this)" id="file" type="file"></div>
+        <div>
+            <input type="text" asp-for="imageUrl" id="imageUrl" hidden>
+        </div>
+        <h3>Publish information</h3>
+        <p style="margin-bottom: 0px;"><b>Publish Now: </b>This course will be available immediately.</p>
+        <p><b>Publish Later: </b>This course will not be available immediately. You will be able to publish it after
+            modules
+            have been added.</p>
+        <div>
+            <select asp-for="published" asp-items="Html.GetEnumSelectList<Publish>()" class="form-control">
+                <option selected="selected" value="">Please select</option>
+            </select>
+        </div>
+        <h3>Visibility Information</h3>
+        <p style="margin-bottom: 0px;"><b>Public: </b>Everyone who is signed in can access this course.</p>
+        <p><b>Private: </b>Only people you add by email will have access to the course.</p>
+        <div>
+            <select asp-for="visibility" asp-items="Html.GetEnumSelectList<Visible>()" class="form-control">
+                <option selected="selected" value="">Please select</option>
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+        <div class="container container-center">
+            <div id="modules-added" class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3"></div>
+        </div>
+    </form>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    const handleFileUpload = async (e) => {
+        var input = document.getElementById("file");
+        var files = input.files;
+        const formdata = new FormData();
+        formdata.append("image", files[0], files[0].name);
+        const requestOptions = {
+            method: 'POST',
+            body: formdata,
+            redirect: 'follow'
+        };
+        await fetch("https://api.imgbb.com/1/upload?key=8d0a7e3689b931e211b03dbd58eab571", requestOptions)
+            .then(response => response.json())
+            .then((result) => {
+                document.getElementById('imageUrl').value = result.data.url;
+            })
+    }
+</script>

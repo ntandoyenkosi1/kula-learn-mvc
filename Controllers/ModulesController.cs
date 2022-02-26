@@ -119,6 +119,7 @@ namespace KulaMVC.Controllers
 
             if (ModelState.IsValid)
             {
+                 @module.iat=(int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                 try
                 {
                     _context.Update(@module);
@@ -135,7 +136,8 @@ namespace KulaMVC.Controllers
                         throw;
                     }
                 }
-                return View(@module);
+                return Redirect($"/Courses/Details/{@module.collectionID}");
+                //return View(@module);
             }
             return View(@module);
         }

@@ -61,7 +61,8 @@ namespace KulaMVC.Controllers
             {
                 _context.Add(course);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Redirect($"/Courses/Details/{course.ID}");
+                //return RedirectToAction(nameof(Index));
             }
             return View(course);
         }

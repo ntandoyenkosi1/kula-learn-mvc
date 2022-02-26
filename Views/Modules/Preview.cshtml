@@ -2,8 +2,9 @@
 @using Markdig
 
 <div>
-    <div id="sidebar" class="sidebar2">
-        <ol>
+    <div id="sideNavigation" class="sidenav">
+        <ull>
+            <li><a class="closebtn" onclick="closeNav()">&times;</a></li>
             @foreach (var item in Model)
             {
                 <a asp-action="Preview" asp-route-collectionID="@item.collectionID" asp-route-moduleID="@item.ID">
@@ -13,199 +14,69 @@
                     </li>
                 </a>
             }
-        </ol>
+        </ull>
     </div>
     <div id="main-content" class="main-content">
+        @* <div id="sideNavigation" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+            </div>
+
+            <div id="main">
+            <h2>Sidenav Push Example</h2>
+            <p>Click on the element below to open the side navigation menu, and push this content to the right.</p>
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+            </div> *@
+
+        <span id="block-button" style="cursor:pointer;" onclick="openNav()">&#9776;
+        </span>
+        <div class="sidebar2">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <a asp-action="Preview" asp-route-collectionID="@item.collectionID" asp-route-moduleID="@item.ID">
+                        <li class="file">
+                            @item.title
+
+                        </li>
+                    </a>
+                }
+            </ul>
+        </div>
         <h1>@ViewData["title"]</h1>
         @{
-            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
             //var html=$"## Markdown Text * Item 1 * Item 2 The current Time is: **{@DateTime.Now.ToString("HH:mm:ss")}**";
+
             if ((String)ViewData["shortDescription"] != null)
             {
+                var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
                 var shortString = Markdown.ToHtml((String)ViewData["shortDescription"], pipeline);
                 <div>@Html.Raw(shortString)</div>
             }
-            else
-            {
-                <div>@ViewData["shortDescription"]</div>
-            }
+            <hr>
             if ((String)ViewData["longDescription"] != null)
             {
-                <div class="col justify" style="text-align: justify;">@ViewData["shortDescription"]</div>
+                var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+                @* <div class="col justify" style="text-align: justify;">@ViewData["shortDescription"]</div> *@
                 var longString = Markdown.ToHtml((String)ViewData["longDescription"], pipeline);
                 <div>@Html.Raw(longString)</div>
-            }
-            else
-            {
-                <div>@ViewData["longDescription"]</div>
             }
 
         }
         <div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @* <div>
-        <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" id="mySidebar" style="width: 200px;">
-        <div role="alert" class="fade custom-alert alert alert-success show">
-        <h2><b>Chapters</b></h2>
-        </div><button class="w3-bar-item w3-button w3-large w3-hide-large">Close</button>
-        <div class="nav nav-pills flex-column mb-auto" id="sidebar"
-        style="justify-content: center; align-items: center;">
-        <table class="nav nav-pills flex-column mb-auto">
-        <tbody>
-        @*Replace with chapters actual chapters: TR, TD*@
-    @* <div id="chapters">
-        </div> *@
-    @* <tr>
-        <td class="nav-link link-dark sidebar-btn alert"
-        style="justify-content: center; align-items: center; align-self: center;">What is
-        Blockchain?</td>
-        </tr>
-        <tr>
-        <td class="nav-link link-dark sidebar-btn alert"
-        style="justify-content: center; align-items: center; align-self: center;">Hype around
-        Blockchain</td>
-        </tr> *@
-    @* </tbody>
-        </table>
-        </div>
-        </div>
-        <div class="w3-main" style="margin-left: 210px;"> *@
-    @* <div class="bg-new"><button class="w3-button bg-new w3-xlarge w3-hide-large">☰</button>
-        <div class="w3-container">
-        <div>
-        <nav class="navbar navbar-expand navbar-light"><img src="https://i.ibb.co/1GgrKCJ/goat.png"
-        alt="logo" class="rounded mx-auto d-block" style="width: 90px; height: 90px;"><span
-        class="navbar-brand">
-        <h1 style="color: white;">Kula Learn</h1>
-        </span><button type="button" aria-label="Toggle navigation"
-        class="navbar-toggler collapsed"><span class="navbar-toggler-icon"></span></button>
-        <div class="justify-content-end navbar-collapse collapse"><span class="navbar-text">
-        <div class="dropstart"><button id="react-aria3979251170-5" aria-expanded="false"
-        type="button" class="dropdown-toggle btn btn-secondary">Account</button></div>
-        </span></div>
-        </nav>
-        </div>
-        </div>
-        </div> @*
-        <h1>What is Blockchain?</h1>
-        <div class="col justify" style="text-align: justify;">Blockchain is a system of recording information in a way
-        that makes it difficult or impossible to change, hack, or cheat the system. A blockchain is essentially a
-        digital ledger of transactions that is duplicated and distributed across the entire network of computer
-        systems on the blockchain.</div>
-        <h1>Blockchain</h1>
-        <p>A <strong>blockchain</strong> is essentially a digital ledger of transactions that is duplicated and
-        distributed across the entire network of computer systems on the blockchain. Each block in the chain
-        contains a number of transactions, and every time a new transaction occurs on the blockchain, a record of
-        that transaction is added to every participant’s ledger. The decentralised database managed by multiple
-        participants is known as <strong>Distributed Ledger Technology (DLT).</strong> Blockchain is a type of DLT
-        in which transactions are recorded with an immutable cryptographic signature called a hash. This means if
-        one block in one chain was changed, it would be immediately apparent it had been tampered with. If hackers
-        wanted to corrupt a blockchain system, they would have to change every block in the chain, across all of the
-        distributed versions of the chain.</p>
-        <pre><code>This is a code
-        </code></pre>
-        <div>
-        <div>&nbsp; &nbsp;<span class="footer1"><a class="footer1" href="/">Home</a></span>&nbsp;<span
-        class="footer1"><a class="footer1" href="/courses">Courses</a></span>&nbsp;<span class="footer1"><a
-        class="footer1" href="/profile">Profile</a></span></div>
-        </div>
-        </div>
-        </div> *@
-
-    @* <h1>Details</h1>
-
-        <table class="table">
-        <thead>
-        <tr>
-        <th>
-        @Html.DisplayNameFor(model => model.collectionID)
-        </th>
-        <th>
-        @Html.DisplayNameFor(model => model.language)
-        </th>
-        <th>
-        @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-        @Html.DisplayNameFor(model => model.shortDescription)
-        </th>
-        <th>
-        @Html.DisplayNameFor(model => model.longDescription)
-        </th>
-        <th>
-        @Html.DisplayNameFor(model => model.video)
-        </th>
-        <th>
-        @Html.DisplayNameFor(model => model.uploader)
-        </th>
-        <th>
-        @Html.DisplayNameFor(model => model.iat)
-        </th>
-        <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model) {
-        <tr>
-        <td>
-        @Html.DisplayFor(modelItem => item.collectionID)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.language)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.shortDescription)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.longDescription)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.video)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.uploader)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.iat)
-        </td>
-        <td>
-        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-        </td>
-        </tr>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        function openNav() {
+            document.getElementById("sideNavigation").style.width = "250px";
+            document.getElementById("main-content").style.marginLeft = "250px";
         }
-        </tbody>
-        </table> *@
+        function closeNav() {
+            document.getElementById("sideNavigation").style.width = "0";
+            document.getElementById("main-content").style.marginLeft = "0";
+        }
+    </script>
