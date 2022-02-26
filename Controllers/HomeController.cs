@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using KulaMVC.Models;
+using KulaLearnMVC.Models;
 
-namespace KulaMVC.Controllers;
+namespace KulaLearnMVC.Controllers;
 
 public class HomeController : Controller
 {

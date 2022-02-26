@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using KulaMVC.Models;
+using KulaLearnMVC.Models;
+using KulaLearnMVC.Data;
 
-namespace KulaMVC.Controllers
+namespace KulaLearnMVC.Controllers
 {
     public class ModulesController : Controller
     {
-        private readonly MvcCoursesContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ModulesController(MvcCoursesContext context)
+        public ModulesController(ApplicationDbContext context)
         {
             _context = context;
         }

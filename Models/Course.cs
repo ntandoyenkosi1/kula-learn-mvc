@@ -1,9 +1,8 @@
-namespace KulaMVC.Models;
+namespace KulaLearnMVC.Models;
 
 public class Course
 {
     public string? ID { get; set; }
-
     public string? collectionID {get;set;}
     public string? title{get;set;}
     public string? shortDescription{get;set;}
