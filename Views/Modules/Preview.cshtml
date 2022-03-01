@@ -1,4 +1,4 @@
-@model IEnumerable<KulaLearnMVC.Models.Module>
+@model IEnumerable<KulaMVC.Models.Module>
 @using Markdig
 
 <div>
@@ -7,12 +7,12 @@
             <li><a class="closebtn" onclick="closeNav()">&times;</a></li>
             @foreach (var item in Model)
             {
-                <a asp-action="Preview" asp-route-collectionID="@item.collectionID" asp-route-moduleID="@item.ID">
-                    <li class="file">
+                    <a asp-action="Preview" asp-route-collectionID="@item.collectionID" asp-route-moduleID="@item.ID">
+                        <li class="file">
                         @item.title
 
-                    </li>
-                </a>
+                        </li>
+                    </a>
             }
         </ull>
     </div>
@@ -37,12 +37,12 @@
             <ul>
                 @foreach (var item in Model)
                 {
-                    <a asp-action="Preview" asp-route-collectionID="@item.collectionID" asp-route-moduleID="@item.ID">
-                        <li class="file">
+                        <a asp-action="Preview" asp-route-collectionID="@item.collectionID" asp-route-moduleID="@item.ID">
+                            <li class="file">
                             @item.title
 
-                        </li>
-                    </a>
+                            </li>
+                        </a>
                 }
             </ul>
         </div>
@@ -54,15 +54,15 @@
             {
                 var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
                 var shortString = Markdown.ToHtml((String)ViewData["shortDescription"], pipeline);
-                <div>@Html.Raw(shortString)</div>
+                        <div>@Html.Raw(shortString)</div>
             }
-            <hr>
+                <hr>
             if ((String)ViewData["longDescription"] != null)
             {
                 var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
                 @* <div class="col justify" style="text-align: justify;">@ViewData["shortDescription"]</div> *@
                 var longString = Markdown.ToHtml((String)ViewData["longDescription"], pipeline);
-                <div>@Html.Raw(longString)</div>
+                        <div>@Html.Raw(longString)</div>
             }
 
         }

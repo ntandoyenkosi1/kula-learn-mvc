@@ -239,6 +239,9 @@ nav {
 	background-color: #e4f7f6;
 	border-radius: "50px";
 }
+.navbar-expand {
+	justify-content: space-between;
+}
 .content {
 	padding-top: 60px;
 	position: absolute;
@@ -257,7 +260,6 @@ a {
 	white-space: nowrap;
 }
 a:hover {
-	text-decoration: underline;
 	color: #505d6b;
 }
 

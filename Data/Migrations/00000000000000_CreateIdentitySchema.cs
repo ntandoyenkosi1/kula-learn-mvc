@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace KulaLearnMVC.Data.Migrations
+namespace KulaMVC.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

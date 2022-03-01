@@ -1,0 +1,104 @@
+﻿@page
+@using KulaMVC.Data
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+@* <div class="page shadow p-3 mb-5 rounded">
+    <h3>Register</h3>
+    <div class="input-group mb-3">
+    <input type="text" id="firstName" class="form-control" placeholder="First name" required="">
+    <input type="text" id="lastName" class="form-control" placeholder="Last Name" required="">
+    </div>
+    <div class="input-group mb-3"><input type="email" id="email" class="form-control" placeholder="Email" required="">
+    <input type="password" id="password" class="form-control" placeholder="password" required="">
+    </div>
+    <div class="input-group mb-3">
+    <label class="input-group-text" for="roleSelect">You are a:</label>
+    <select class="form-select" id="roleSelect" required="">
+    <option>Choose... </option>
+    <option value="student">Student</option>
+    <option value="instructor">Instructor</option>
+    </select>
+    </div>
+    <p>
+    <input type="button" class="btn wide" value="Register">
+    </p>
+    </div> *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="background-color: white;" class="page shadow p-3 mb-5 rounded">
+    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <h3>Register</h3>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="input-group mb-3">
+            <input type="text" id="firstName" asp-for="Input.FirstName" class="form-control" placeholder="First name"
+                required="">
+            <input type="text" asp-for="Input.LastName" id="lastName" class="form-control" placeholder="Last Name"
+                required="">
+        </div>
+        <div class="input-group mb-3">
+            <input asp-for="Input.Email" placeholder="Email" class="form-control" autocomplete="username"
+                aria-required="true" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+        <div class="input-group mb-3">
+            <input asp-for="Input.Password" placeholder="Password" class="form-control" autocomplete="new-password"
+                aria-required="true" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+            <input asp-for="Input.ConfirmPassword" placeholder="Confirm Password" class="form-control"
+                autocomplete="new-password" aria-required="true" />
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        </div>
+        @* <div class="input-group mb-3">
+            <input asp-for="Input.ConfirmPassword" placeholder="Confirm Password" class="form-control"
+            autocomplete="new-password" aria-required="true" />
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div> *@
+        @**@
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="roleSelect">You are a:</label>
+            @* <select class="form-select" id="roleSelect" required="">
+                <option>Choose... </option>
+                <option value="student">Student</option>
+                <option value="instructor">Instructor</option>
+                </select> *@
+
+            <select asp-for="Input.Role" asp-items="Html.GetEnumSelectList<Roles>()" class="form-control">
+                <option selected="selected" value="">Please select</option>
+            </select>
+
+        </div>
+        <button onclick="handleNames(this)" id="registerSubmit" type="submit" class="btn wide">Register</button>
+    </form>
+</div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    function handleNames(e) {
+        const name = document.getElementById("firstName") as HTMLInputElement
+        const lname = document.getElementById("lastName") as HTMLInputElement
+        console.log(name.value, "First Name")
+        console.log(lname.value, "Last Name")
+    }
+</script>

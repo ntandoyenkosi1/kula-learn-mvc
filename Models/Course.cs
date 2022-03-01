@@ -1,4 +1,4 @@
-namespace KulaLearnMVC.Models;
+namespace KulaMVC.Models;
 
 public class Course
 {

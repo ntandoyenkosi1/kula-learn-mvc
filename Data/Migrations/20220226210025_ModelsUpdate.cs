@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace KulaLearnMVC.Data.Migrations
+namespace KulaMVC.Data.Migrations
 {
     public partial class ModelsUpdate : Migration
     {

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using KulaLearnMVC.Models;
-using KulaLearnMVC.Data;
+using KulaMVC.Models;
+using KulaMVC.Data;
 
-namespace KulaLearnMVC.Controllers
+namespace KulaMVC.Controllers
 {
     public class ModulesController : Controller
     {

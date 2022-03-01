@@ -1,4 +1,4 @@
-@model IEnumerable<KulaLearnMVC.Models.Course>
+@model IEnumerable<KulaMVC.Models.Course>
 @using Markdig
 @{
     ViewData["Title"] = "Index";
@@ -35,29 +35,29 @@
             @* </div> *@
             @foreach (var item in Model)
             {
-                <div style="background-color: white;" class="shadow p-3 mb-5 rounded offset">
-                    <h3>@Html.DisplayFor(modelItem => item.title)</h3>
-                    <img src="@item.imageUrl" class="rounded mx-auto d-block" style="max-height: 115px;">
+                    <div style="background-color: white;" class="shadow p-3 mb-5 rounded offset">
+                        <h3>@Html.DisplayFor(modelItem => item.title)</h3>
+                        <img src="@item.imageUrl" class="rounded mx-auto d-block" style="max-height: 115px;">
                     @{
                         var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
                         var hString = Markdown.ToHtml(@item.shortDescription, pipeline);
 
-                        <div>@Html.Raw(hString)</div>
+                                <div>@Html.Raw(hString)</div>
                     }
-                    <div>
-                        <a asp-route-collectionID="@item.ID" asp-controller="Modules" asp-action="Preview"
+                        <div>
+                            <a asp-route-collectionID="@item.ID" asp-controller="Modules" asp-action="Preview"
                         class="btn">Preview</a>
-                        <a asp-route-id="@item.ID" asp-action="Delete" class="btn">Delete</a>
-                        <a asp-route-id="@item.ID" asp-action="Edit" class="btn">Edit</a>
-                    </div>
-                    <span>Created at:
+                            <a asp-route-id="@item.ID" asp-action="Delete" class="btn">Delete</a>
+                            <a asp-route-id="@item.ID" asp-action="Edit" class="btn">Edit</a>
+                        </div>
+                        <span>Created at:
                         @{
                             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
                             dtDateTime = dtDateTime.AddSeconds(item.createdAt).ToLocalTime();
                         }
                         @dtDateTime
-                    </span><span><br>Last modified by: Instructor</span>
-                </div>
+                        </span><span><br>Last modified by: Instructor</span>
+                    </div>
             }
         </div>
     </div>
