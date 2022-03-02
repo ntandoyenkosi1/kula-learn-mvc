@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -31,15 +34,29 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - KulaMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer style="text-align: center;" class="border-top footer text-muted">
+        @* @if (SignInManager.IsSignedIn(User) && User.IsInRole("Student")) *@
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <span style="text-align: center;">
+                <span class="footer1"><a asp-controller="Home" asp-action="Index" class="footer1">Home</a></span>
+                <span class="footer1"><a asp-controller="Courses" asp-action="Index" class="footer1">Courses</a></span>
+                <span class="footer1"><a asp-controller="Identity" asp-action="Account" asp-route-id="Manage"
+                    class="footer1">Profile</a></span>
+            </span>
+        }
+        else
+        {
+            <span style="text-align: center;">
+                <span class="footer1"><a asp-controller="Home" asp-action="Index" class="footer1">Home</a></span>
+            </span>
+        }
+
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

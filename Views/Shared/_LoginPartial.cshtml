@@ -5,10 +5,10 @@
 <ul style="margin-right: 0px;" class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li class="nav-item">
+        @* <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello
-                @User.Identity?.Name!</a>
-        </li>
+            @User.Identity?.Name!</a>
+            </li> *@
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
             asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -18,9 +18,9 @@
     }
     else
     {
-        <li style="right: 0px;" class="">
+        @* <li style="right: 0px;" class="">
             <a class="btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        </li>
+            </li> *@
         <li class="">
             <a class="btn" asp-area="Identity" asp-page="/Account/Login"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                 height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">

@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KulaMVC.Models;
 using KulaMVC.Data;
-
+using Microsoft.AspNetCore.Authorization;
 namespace KulaMVC.Controllers
 {
+    [Authorize]
     public class ModulesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,10 +22,12 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Modules
+        [Authorize(Roles="Admin, Instructor, Student")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Module.ToListAsync());
         }
+        [Authorize(Roles="Admin, Instructor, Student")]
         public async Task<IActionResult> Preview(string collectionID, string moduleID){
             var modules=await _context.Module.Where(r=>r.collectionID==collectionID).ToListAsync();
             if(moduleID==null){
@@ -66,6 +69,7 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Modules/Create
+        [Authorize(Roles="Admin, Instructor")]
         public IActionResult Create(string collectionID)
         {
             ViewData["collectionID"]=collectionID;
@@ -75,6 +79,7 @@ namespace KulaMVC.Controllers
         // POST: Modules/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles="Admin, Instructor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,collectionID,language,title,shortDescription,longDescription,video,uploader,iat")] Module @module)
@@ -92,6 +97,7 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Modules/Edit/5
+        [Authorize(Roles="Admin, Instructor")]
         public async Task<IActionResult> Edit(string id, string moduleID)
         {
             if (id == null)
@@ -109,6 +115,7 @@ namespace KulaMVC.Controllers
         // POST: Modules/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles="Admin, Instructor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("ID,collectionID,language,title,shortDescription,longDescription,video,uploader,iat")] Module @module)
@@ -144,6 +151,7 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Modules/Delete/5
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -162,6 +170,7 @@ namespace KulaMVC.Controllers
         }
 
         // POST: Modules/Delete/5
+        [Authorize(Roles="Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
@@ -171,7 +180,6 @@ namespace KulaMVC.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool ModuleExists(string id)
         {
             return _context.Module.Any(e => e.ID == id);

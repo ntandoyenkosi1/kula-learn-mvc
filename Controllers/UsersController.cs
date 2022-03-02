@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KulaMVC.Data;
 using KulaMVC.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace KulaMVC.Controllers
 {
+    [Authorize(Roles="Admin")]
     public class UsersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,6 +22,7 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Users
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.User.ToListAsync());

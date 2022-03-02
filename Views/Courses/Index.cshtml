@@ -1,5 +1,8 @@
 @model IEnumerable<KulaMVC.Models.Course>
 @using Markdig
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @{
     ViewData["Title"] = "Index";
 }
@@ -16,48 +19,58 @@
                 <div class="align-center card-title h5">Browse</div>
                 <p class="align-center card-text">
                 <p>We offer beginner and more advanced courses.</p>
-                <a asp-action="Create" class="btn wide wider">Create New Course</a>
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Instructor"))
+                    {
+                    <a asp-action="Create" class="btn wide wider">Create New Course</a>
+                    }
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                    <a asp-action="Create" class="btn wide wider">Create New Course</a>
+                    }
                 </p>
             </div>
         </div>
     </div>
     <div class="card">
         <div class="" id="cards-li">
-            @* <div style="background-color: white;" class="shadow p-3 mb-5 rounded offset"> *@
-            @* <h3>Hype around Blockchain</h3>
-                <img src="https://i.ibb.co/9stx1C6/goal.png" class="rounded mx-auto d-block"
-                style="max-height: 115px;"> *@
-            @* <div>There have been many attempts to create digital money in the past, but they have always
-                failed.<br><br>The prevailing issue is trust. If someone creates a new currency called the X
-                dollar, how can we trust that they won't give themselves a million X dollars, or steal your X
-                dollars for themselves?
-                </div> *@
-            @* </div> *@
             @foreach (var item in Model)
             {
-                    <div style="background-color: white;" class="shadow p-3 mb-5 rounded offset">
-                        <h3>@Html.DisplayFor(modelItem => item.title)</h3>
-                        <img src="@item.imageUrl" class="rounded mx-auto d-block" style="max-height: 115px;">
+                <div style="background-color: white;" class="shadow p-3 mb-5 rounded offset">
+                    <h3>@Html.DisplayFor(modelItem => item.title)</h3>
+                    <img src="@item.imageUrl" class="rounded mx-auto d-block" style="max-height: 115px;">
                     @{
                         var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
                         var hString = Markdown.ToHtml(@item.shortDescription, pipeline);
-
-                                <div>@Html.Raw(hString)</div>
+                        <div>@Html.Raw(hString)</div>
                     }
-                        <div>
+                    <div>
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Student"))
+                        {
                             <a asp-route-collectionID="@item.ID" asp-controller="Modules" asp-action="Preview"
-                        class="btn">Preview</a>
-                            <a asp-route-id="@item.ID" asp-action="Delete" class="btn">Delete</a>
-                            <a asp-route-id="@item.ID" asp-action="Edit" class="btn">Edit</a>
-                        </div>
-                        <span>Created at:
+                        class="btn wide wider">Enroll</a>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Instructor"))
+                        {
+                            <a asp-route-collectionID="@item.ID" asp-controller="Modules" asp-action="Preview"
+                        class="btn wide wider">Preview</a>
+                            <a asp-route-id="@item.ID" asp-action="Edit" class="btn wide wider">Edit</a>
+                        }
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <a asp-route-collectionID="@item.ID" asp-controller="Modules" asp-action="Preview"
+                        class="btn wide wider">Preview</a>
+                            <a asp-route-id="@item.ID" asp-action="Edit" class="btn wide wider">Edit</a>
+                            <a asp-route-id="@item.ID" asp-action="Delete" class="btn wide wider">Delete</a>
+                        }
+                    </div>
+                    <span>Created at:
                         @{
                             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
                             dtDateTime = dtDateTime.AddSeconds(item.createdAt).ToLocalTime();
                         }
                         @dtDateTime
-                        </span><span><br>Last modified by: Instructor</span>
-                    </div>
+                    </span><span><br>Last modified by: Instructor</span>
+                </div>
             }
         </div>
     </div>

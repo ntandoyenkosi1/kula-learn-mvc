@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KulaMVC.Models;
 using KulaMVC.Data;
-
+using Microsoft.AspNetCore.Authorization;
 namespace KulaMVC.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,10 +22,12 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Courses
+        [Authorize(Roles="Admin, Instructor, Student")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Course.ToListAsync());
         }
+        [Authorize(Roles="Admin, Instructor, Student")]
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -43,6 +46,7 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Courses/Create
+        [Authorize(Roles="Admin, Instructor")]
         public IActionResult Create()
         {
             return View();
@@ -69,6 +73,7 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Courses/Edit/5
+        [Authorize(Roles="Admin, Instructor")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -89,6 +94,7 @@ namespace KulaMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles="Admin, Instructor")]
         public async Task<IActionResult> Edit(string id, [Bind("ID,collectionID,title,shortDescription,imageUrl,createdAt,uploader,published,visibility")] Course course)
         {
             if (id != course.ID)
@@ -120,6 +126,7 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Courses/Delete/5
+        [Authorize(Roles="Admin, Instructor")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -140,6 +147,7 @@ namespace KulaMVC.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var course = await _context.Course.FindAsync(id);
