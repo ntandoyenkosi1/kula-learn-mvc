@@ -74,6 +74,8 @@ label {
 }
 .main-content {
 	background-color: white;
+	/* position: absolute;
+	height: fit-content; */
 }
 @media (min-width: 576px) {
 	.container,
@@ -317,4 +319,22 @@ ol {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+}
+footer{
+	position:absolute;
+   bottom:0;
+   width:100%;
+   /* height:60px;   /* Height of the footer */
+   /* background:#6cf;  */
+
+	/* position: -webkit-sticky;
+	position: sticky;
+	bottom: 0;
+	background-color: yellow;
+	font-size: 20px;
+	min-height: 100%; */
+	/* position: fixed;
+	text-align: center;
+	width: 100%;
+	bottom: 0px; */
 }
