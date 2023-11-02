@@ -20,13 +20,15 @@
     <header>
         <nav class="navbar navbar-expand navbar-light bg-new">
             <div class="navbar navbar-expand navbar-light">
-                <img src="https://i.ibb.co/1GgrKCJ/goat.png" style="max-width: 90px; max-height:90px;" alt="logo"
-                    class="rounded mx-auto d-block reduce-img" />
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="https://i.ibb.co/1GgrKCJ/goat.png" style="max-width: 90px; max-height:90px;" alt="logo"
+                         class="rounded mx-auto d-block reduce-img" />
+                </a>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" style="color: white;" asp-action="Index">
                     <h1>Kula Learn</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>

@@ -37,7 +37,7 @@
             {
                 <div style="background-color: white;" class="shadow p-3 mb-5 rounded offset">
                     <h3>@Html.DisplayFor(modelItem => item.title)</h3>
-                    <img src="@item.imageUrl" class="rounded mx-auto d-block" style="max-height: 115px;">
+                    <img src="@item.imageUrl" class="rounded mx-auto d-block" style="max-height: 115px; width: 70%;">
                     @{
                         var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
                         var hString = Markdown.ToHtml(@item.shortDescription, pipeline);
