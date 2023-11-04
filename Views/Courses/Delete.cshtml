@@ -5,22 +5,22 @@
 }
 <div class="flexbox-container" id="cards-li">
     <div class="shadow p-3 mb-5 rounded offset">
-        <h3>@Model.title</h3>
+        <h3>@Model.Title</h3>
         <img src="https://i.ibb.co/9stx1C6/goal.png" class="rounded mx-auto d-block" style="max-height: 115px;">
         <div>
-            @Model.shortDescription
+            @Model.ShortDescription
         </div>
         <div>
             <span>Last Modified:
                 @{
                     System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                    dtDateTime = dtDateTime.AddSeconds(@Model.createdAt).ToLocalTime();
+                    dtDateTime = dtDateTime.AddSeconds(@Model.CreatedAt).ToLocalTime();
                 }
                 @dtDateTime
             </span>
         </div>
         <div>
-            All modules associated with this course will also be deleted.
+            All modules assocIated with this course will also be deleted.
         </div>
     </div>
 </div>

@@ -28,15 +28,15 @@ namespace KulaMVC.Controllers
             return View(await _context.Module.ToListAsync());
         }
         [Authorize(Roles="Admin, Instructor, Student")]
-        public async Task<IActionResult> Preview(string collectionID, string moduleID){
-            var modules=await _context.Module.Where(r=>r.collectionID==collectionID).ToListAsync();
+        public async Task<IActionResult> Preview(string CollectionID, string moduleID){
+            var modules=await _context.Module.Where(r=>r.CollectionID==CollectionID).ToListAsync();
             if(moduleID==null){
                 try{
-                    var modelItem =await _context.Module.Where(r=>r.collectionID==collectionID).FirstOrDefaultAsync();
-                    ViewData["title"]=modelItem.title;
-                    ViewData["shortDescription"]=modelItem.shortDescription;
-                    ViewData["longDescription"]=modelItem.longDescription;
-                    ViewData["video"]=modelItem.video;
+                    var modelItem =await _context.Module.Where(r=>r.CollectionID==CollectionID).FirstOrDefaultAsync();
+                    ViewData["Title"]=modelItem.Title;
+                    ViewData["ShortDescription"]=modelItem.ShortDescription;
+                    ViewData["LongDescription"]=modelItem.LongDescription;
+                    ViewData["Video"]=modelItem.Video;
                 }
                 catch{
                     //
@@ -44,10 +44,10 @@ namespace KulaMVC.Controllers
                 return View(modules);
             }
             var model =await _context.Module.Where(r=>r.ID==moduleID).FirstOrDefaultAsync();
-            ViewData["title"]=model.title;
-            ViewData["shortDescription"]=model.shortDescription;
-            ViewData["longDescription"]=model.longDescription;
-            ViewData["video"]=model.video;
+            ViewData["Title"]=model.Title;
+            ViewData["ShortDescription"]=model.ShortDescription;
+            ViewData["LongDescription"]=model.LongDescription;
+            ViewData["Video"]=model.Video;
             return View(modules);
         }
         // GET: Modules/Details/5
@@ -70,27 +70,25 @@ namespace KulaMVC.Controllers
 
         // GET: Modules/Create
         [Authorize(Roles="Admin, Instructor")]
-        public IActionResult Create(string collectionID)
+        public IActionResult Create(string CollectionID)
         {
-            ViewData["collectionID"]=collectionID;
+            ViewData["CollectionID"]=CollectionID;
             return View();
         }
 
         // POST: Modules/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles="Admin, Instructor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,collectionID,language,title,shortDescription,longDescription,video,uploader,iat")] Module @module)
+        public async Task<IActionResult> Create([Bind("ID,CollectionID,language,Title,ShortDescription,LongDescription,Video,Uploader,Iat")] Module @module)
         {
             @module.ID=Guid.NewGuid().ToString();
-            @module.iat=(int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            @module.Iat=(int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             if (ModelState.IsValid)
             {
                 _context.Add(@module);
                 await _context.SaveChangesAsync();
-                return Redirect($"/Modules/Preview?collectionID={@module.collectionID}");
+                return Redirect($"/Modules/Preview?CollectionID={@module.CollectionID}");
                 //return RedirectToAction(nameof(Index));
             }
             return View(@module);
@@ -113,12 +111,10 @@ namespace KulaMVC.Controllers
         }
 
         // POST: Modules/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles="Admin, Instructor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,collectionID,language,title,shortDescription,longDescription,video,uploader,iat")] Module @module)
+        public async Task<IActionResult> Edit(string id, [Bind("ID,CollectionID,language,Title,ShortDescription,LongDescription,Video,Uploader,Iat")] Module @module)
         {
             if (id != @module.ID)
             {
@@ -127,7 +123,7 @@ namespace KulaMVC.Controllers
 
             if (ModelState.IsValid)
             {
-                 @module.iat=(int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                 @module.Iat=(int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                 try
                 {
                     _context.Update(@module);
@@ -144,7 +140,7 @@ namespace KulaMVC.Controllers
                         throw;
                     }
                 }
-                return Redirect($"/Courses/Details/{@module.collectionID}");
+                return Redirect($"/Courses/Details/{@module.CollectionID}");
                 //return View(@module);
             }
             return View(@module);

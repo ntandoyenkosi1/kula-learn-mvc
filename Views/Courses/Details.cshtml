@@ -3,14 +3,14 @@
 @{
     ViewData["Title"] = "Details";
 }
-<a asp-controller="Modules" asp-action="Create" asp-route-collectionID="@ViewData["collection"]" class="btn">Add Modules</a>
+<a asp-controller="Modules" asp-action="Create" asp-route-CollectionID="@ViewData["collection"]" class="btn">Add Modules</a>
     <div class="container">
         <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
         @foreach (var item in Model)
         {
         <div style="background-color: white;" class="shadow p-3 mb-5 rounded">
-            <h4>@item.title</h4>
-            <p>@item.shortDescription</p><a asp-controller="Modules" asp-action="Edit" asp-route-id="@item.ID"
+            <h4>@item.Title</h4>
+            <p>@item.ShortDescription</p><a asp-controller="Modules" asp-action="Edit" asp-route-id="@item.ID"
         class="btn">Edit</a> <a asp-controller="Modules" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
         </div>
         }

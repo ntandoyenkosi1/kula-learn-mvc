@@ -49,8 +49,8 @@ public class ApplicationDbContext : IdentityDbContext
                 new IdentityUserRole<string>() { RoleId = "fab4fac1-c546-41de-aebc-a14da6895711", UserId = "b74ddd14-6340-4840-95c2-db12554843e5" }  
             );
         }
-     
     public DbSet<KulaMVC.Models.Course> Course { get; set; }
     public DbSet<KulaMVC.Models.Module> Module { get; set; }
     public DbSet<KulaMVC.Models.User> User { get; set; }
+
 }

@@ -3,20 +3,22 @@ namespace KulaMVC.Models;
 public class Course
 {
     public string? ID { get; set; }
-    public string? collectionID {get;set;}
-    public string? title{get;set;}
-    public string? shortDescription{get;set;}
-    public string? imageUrl {get;set;}
-    public int createdAt{get;set;}
-    public string? uploader{get;set;}
-    public Publish published{get;set;}
-    public Visible visibility{get;set;}
+    public string? CollectionID { get; set; }
+    public string? Title { get; set; }
+    public string? ShortDescription { get; set; }
+    public string? ImageUrl { get; set; }
+    public int CreatedAt { get; set; }
+    public string? Uploader { get; set; }
+    public Publish published { get; set; }
+    public Visible visibility { get; set; }
 }
-public enum Visible{
+public enum Visible
+{
     Private,
     Public
 }
-public enum Publish{
+public enum Publish
+{
     Now,
     Later
 }

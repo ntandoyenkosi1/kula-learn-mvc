@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace KulaMVC.Data.Migrations
+namespace KulaLearnMVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -22,26 +22,26 @@ namespace KulaMVC.Data.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("collectionID")
+                    b.Property<string>("CollectionID")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("createdAt")
+                    b.Property<int>("CreatedAt")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("imageUrl")
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ShortDescription")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Uploader")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("published")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("shortDescription")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("title")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("uploader")
-                        .HasColumnType("TEXT");
 
                     b.Property<int>("visibility")
                         .HasColumnType("INTEGER");
@@ -56,28 +56,28 @@ namespace KulaMVC.Data.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("collectionID")
+                    b.Property<string>("CollectionID")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("iat")
+                    b.Property<int>("Iat")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("language")
+                    b.Property<string>("Language")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("longDescription")
+                    b.Property<string>("LongDescription")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("shortDescription")
+                    b.Property<string>("ShortDescription")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("title")
+                    b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("uploader")
+                    b.Property<string>("Uploader")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("video")
+                    b.Property<string>("Video")
                         .HasColumnType("TEXT");
 
                     b.HasKey("ID");
@@ -241,13 +241,13 @@ namespace KulaMVC.Data.Migrations
                         {
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "45fc4bc3-3c8a-47ad-9ceb-abf761d43f35",
+                            ConcurrencyStamp = "8a3d2fc4-578e-49d8-b3a6-360eaa0ef522",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ea1c565b-dbc0-4bbf-86fe-9e96b186e8b1",
+                            SecurityStamp = "3b7bcfe3-052e-48b3-b3a7-4c06b653772f",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

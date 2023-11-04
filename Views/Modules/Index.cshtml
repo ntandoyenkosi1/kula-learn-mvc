@@ -5,35 +5,34 @@
 }
 
 
-</div>
 <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.collectionID)
+                @Html.DisplayNameFor(model => model.CollectionID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.language)
+                @Html.DisplayNameFor(model => model.Language)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.title)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.shortDescription)
+                @Html.DisplayNameFor(model => model.ShortDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.longDescription)
+                @Html.DisplayNameFor(model => model.LongDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.video)
+                @Html.DisplayNameFor(model => model.Video)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.uploader)
+                @Html.DisplayNameFor(model => model.Uploader)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.iat)
+                @Html.DisplayNameFor(model => model.Iat)
             </th>
             <th></th>
         </tr>
@@ -43,28 +42,28 @@
         {
                 <tr>
                     <td>
-                    @Html.DisplayFor(modelItem => item.collectionID)
+                    @Html.DisplayFor(modelItem => item.CollectionID)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.language)
+                    @Html.DisplayFor(modelItem => item.Language)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.title)
+                    @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.shortDescription)
+                    @Html.DisplayFor(modelItem => item.ShortDescription)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.longDescription)
+                    @Html.DisplayFor(modelItem => item.LongDescription)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.video)
+                    @Html.DisplayFor(modelItem => item.Video)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.uploader)
+                    @Html.DisplayFor(modelItem => item.Uploader)
                     </td>
                     <td>
-                    @Html.DisplayFor(modelItem => item.iat)
+                    @Html.DisplayFor(modelItem => item.Iat)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

@@ -22,21 +22,21 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Courses
-        [Authorize(Roles="Admin, Instructor, Student")]
+        [Authorize(Roles = "Admin, Instructor, Student")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Course.ToListAsync());
         }
-        [Authorize(Roles="Admin, Instructor, Student")]
+        [Authorize(Roles = "Admin, Instructor, Student")]
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            ViewData["collection"]=id;
+            ViewData["collection"] = id;
             if (id == null)
             {
                 return NotFound();
             }
-            var course = await _context.Module.Where(m => m.collectionID == id).ToListAsync();
+            var course = await _context.Module.Where(m => m.CollectionID == id).ToListAsync();
             if (course == null)
             {
                 return NotFound();
@@ -46,22 +46,20 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Courses/Create
-        [Authorize(Roles="Admin, Instructor")]
+        [Authorize(Roles = "Admin, Instructor")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Courses/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,collectionID,title,shortDescription,imageUrl,createdAt,uploader,published,visibility")] Course course)
+        public async Task<IActionResult> Create([Bind("ID,CollectionID,Title,ShortDescription,ImageUrl,CreatedAt,Uploader,published,visibility")] Course course)
         {
-            course.ID=Guid.NewGuid().ToString();
-            course.collectionID=Guid.NewGuid().ToString();
-            course.createdAt=(int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            course.ID = Guid.NewGuid().ToString();
+            course.CollectionID = Guid.NewGuid().ToString();
+            course.CreatedAt = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
             if (ModelState.IsValid)
             {
                 _context.Add(course);
@@ -73,7 +71,7 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Courses/Edit/5
-        [Authorize(Roles="Admin, Instructor")]
+        [Authorize(Roles = "Admin, Instructor")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -90,12 +88,10 @@ namespace KulaMVC.Controllers
         }
 
         // POST: Courses/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles="Admin, Instructor")]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,collectionID,title,shortDescription,imageUrl,createdAt,uploader,published,visibility")] Course course)
+        [Authorize(Roles = "Admin, Instructor")]
+        public async Task<IActionResult> Edit(string id, [Bind("ID,CollectionID,Title,ShortDescription,ImageUrl,CreatedAt,Uploader,published,visibility")] Course course)
         {
             if (id != course.ID)
             {
@@ -126,7 +122,7 @@ namespace KulaMVC.Controllers
         }
 
         // GET: Courses/Delete/5
-        [Authorize(Roles="Admin, Instructor")]
+        [Authorize(Roles = "Admin, Instructor")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -147,7 +143,7 @@ namespace KulaMVC.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var course = await _context.Course.FindAsync(id);

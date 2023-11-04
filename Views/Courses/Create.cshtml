@@ -12,18 +12,18 @@
 <div style="background-color: white;" class="page-course shadow p-3 mb-5 rounded">
     <h3>Course Information</h3>
     <form asp-action="Create" enctype="multipart/form-data">
-        <div class="input-group mb-3"><input type="text" asp-for="title" id="course-title" required="" maxlength="50"
-                class="form-control" placeholder="Enter course title"></div>
-        <div class="input-group mb-3"><input type="text" asp-for="shortDescription" id="course-description" required=""
+        <div class="input-group mb-3"><input type="text" asp-for="Title" id="course-Title" required="" maxlength="50"
+                class="form-control" placeholder="Enter course Title"></div>
+        <div class="input-group mb-3"><input type="text" asp-for="ShortDescription" id="course-description" required=""
                 maxlength="200" class="form-control" placeholder="Enter short description"></div>
         <div class="mb-3"><label for="file" class="form-label">Upload a picture for the course</label><input
                 class="form-control form-control-sm" onchange="handleFileUpload(this)" id="file" type="file"></div>
         <div>
-            <input type="text" asp-for="imageUrl" id="imageUrl" hidden>
+            <input type="text" asp-for="ImageUrl" id="ImageUrl" hidden>
         </div>
         <h3>Publish information</h3>
-        <p style="margin-bottom: 0px;"><b>Publish Now: </b>This course will be available immediately.</p>
-        <p><b>Publish Later: </b>This course will not be available immediately. You will be able to publish it after
+        <p style="margin-bottom: 0px;"><b>Publish Now: </b>This course will be available immedIately.</p>
+        <p><b>Publish Later: </b>This course will not be available immedIately. You will be able to publish it after
             modules
             have been added.</p>
         <div>
@@ -63,7 +63,7 @@
         await fetch("https://api.imgbb.com/1/upload?key=8d0a7e3689b931e211b03dbd58eab571", requestOptions)
             .then(response => response.json())
             .then((result) => {
-                document.getElementById('imageUrl').value = result.data.url;
+                document.getElementById('ImageUrl').value = result.data.url;
             })
     }
 </script>
