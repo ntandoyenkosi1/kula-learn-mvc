@@ -6,72 +6,57 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div role="alert" class="fade custom-alert alert alert-primary show">
-    <div class="alert-heading h4">
-        <h2><b>Welcome to Kula Learn</b></h2>
-    </div>
+<div>
+    <h2>Welcome to Kula Learn</h2>
 </div>
-<div style="background-color: white;" class="page-home shadow p-3 mb-5 rounded">
-    <div class="card-group">
-        <div class="card">
-            <img class="card-img-top img-decoration rounded mx-auto d-block" src="https://i.ibb.co/ZBYYGj0/course.png">
-            <div class="card-body">
-                <div class="align-center card-Title h5">Browse</div>
-                <p class="align-center card-text">
-                <p>We offer beginner and more advanced courses.
-                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Instructor"))
-                    {
-                    <a asp-action="Create" class="btn wide wider">Create New Course</a>
-                    }
-                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-                    {
-                    <a asp-action="Create" class="btn wide wider">Create New Course</a>
-                    }
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="" id="cards-li">
-            @foreach (var item in Model)
-            {
-                <div style="background-color: white;" class="shadow p-3 mb-5 rounded offset">
-                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
-                    <img src="@item.ImageUrl" class="rounded mx-auto d-block" style="max-height: 115px; width: 70%;">
-                    @{
-                        var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-                        var hString = Markdown.ToHtml(@item.ShortDescription!, pipeline);
-                        <div>@Html.Raw(hString)</div>
-                    }
-                    <div>
-                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Student"))
-                        {
-                            <a asp-route-CollectionID="@item.ID" asp-controller="Modules" asp-action="Preview"
-                                class="btn wide wider">Enroll</a>
-                        }
-                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Instructor"))
-                        {
-                            <a asp-route-CollectionID="@item.ID" asp-controller="Modules" asp-action="Preview"
-                                class="btn wide wider">Preview</a>
-                            <a asp-route-id="@item.ID" asp-action="Edit" class="btn wide wider">Edit</a>
-                        }
-                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-                        {
-                            <a asp-route-CollectionID="@item.ID" asp-controller="Modules" asp-action="Preview"
-                                class="btn wide wider">Preview</a>
-                            <a asp-route-id="@item.ID" asp-action="Edit" class="btn wide wider">Edit</a>
-                            <a asp-route-id="@item.ID" asp-action="Delete" class="btn wide wider">Delete</a>
-                        }
-                    </div>
-                    <span>Created at:
-                        @{
-                            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                            dtDateTime = dtDateTime.AddSeconds(item.CreatedAt).ToLocalTime();
-                        }
-                        @dtDateTime
-                    </span><span><br>Last modified by: Instructor</span>
-                </div>
+<img src="https://i.ibb.co/ZBYYGj0/course.png" />
+<div>Browse</div>
+<div>We offer beginner and more advanced courses.
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Instructor"))
+    {
+        <a asp-action="Create">Create New Course</a>
+    }
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        <a asp-action="Create">Create New Course</a>
+    }
+</div>
+<div>
+    @foreach (var item in Model)
+    {
+        <div>
+            <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+            <img src="@item.ImageUrl" />
+            @{
+                var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+                var hString = Markdown.ToHtml(@item.ShortDescription!, pipeline);
+                <div>@Html.Raw(hString)</div>
             }
+            <div>
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Student"))
+                {
+                    <a asp-route-CollectionID="@item.ID" asp-controller="Modules" asp-action="Preview">Enroll</a>
+                }
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Instructor"))
+                {
+                    <a asp-route-CollectionID="@item.ID" asp-controller="Modules" asp-action="Preview">Preview</a>
+                    <a asp-route-id="@item.ID" asp-action="Edit">Edit</a>
+                }
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <a asp-route-CollectionID="@item.ID" asp-controller="Modules" asp-action="Preview">Preview</a>
+                    <a asp-route-id="@item.ID" asp-action="Edit">Edit</a>
+                    <a asp-route-id="@item.ID" asp-action="Delete">Delete</a>
+                }
+            </div>
+            <div>Created at:
+                @{
+                    System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                    dtDateTime = dtDateTime.AddSeconds(item.CreatedAt).ToLocalTime();
+                }
+                @dtDateTime
+            </div>
+            <div>Last modified by: Instructor</div>
         </div>
-    </div>
- </div>
+    }
+</div>

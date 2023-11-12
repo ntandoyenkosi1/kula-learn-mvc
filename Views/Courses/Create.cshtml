@@ -4,50 +4,42 @@
     ViewData["Title"] = "Create";
 }
 
-<div role="alert" class="fade custom-alert alert alert-primary show">
-    <div class="alert-heading h4">
-        <h1>Create a new course</h1>
+<div>
+    <h1>Create a new course</h1>
+</div>
+<h3>Course Information</h3>
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="input-group mb-3"><input type="text" asp-for="Title" id="course-Title" required="" maxlength="50"
+            class="form-control" placeholder="Enter course Title"></div>
+    <div class="input-group mb-3"><input type="text" asp-for="ShortDescription" id="course-description" required=""
+            maxlength="200" class="form-control" placeholder="Enter short description"></div>
+    <div class="mb-3"><label for="file" class="form-label">Upload a picture for the course</label><input
+            class="form-control form-control-sm" onchange="handleFileUpload(this)" id="file" type="file"></div>
+    <div>
+        <input type="text" asp-for="ImageUrl" id="ImageUrl" hidden>
     </div>
-</div>
-<div style="background-color: white;" class="page-course shadow p-3 mb-5 rounded">
-    <h3>Course Information</h3>
-    <form asp-action="Create" enctype="multipart/form-data">
-        <div class="input-group mb-3"><input type="text" asp-for="Title" id="course-Title" required="" maxlength="50"
-                class="form-control" placeholder="Enter course Title"></div>
-        <div class="input-group mb-3"><input type="text" asp-for="ShortDescription" id="course-description" required=""
-                maxlength="200" class="form-control" placeholder="Enter short description"></div>
-        <div class="mb-3"><label for="file" class="form-label">Upload a picture for the course</label><input
-                class="form-control form-control-sm" onchange="handleFileUpload(this)" id="file" type="file"></div>
-        <div>
-            <input type="text" asp-for="ImageUrl" id="ImageUrl" hidden>
-        </div>
-        <h3>Publish information</h3>
-        <p style="margin-bottom: 0px;"><b>Publish Now: </b>This course will be available immedIately.</p>
-        <p><b>Publish Later: </b>This course will not be available immedIately. You will be able to publish it after
-            modules
-            have been added.</p>
-        <div>
-            <select asp-for="published" asp-items="Html.GetEnumSelectList<Publish>()" class="form-control">
-                <option selected="selected" value="">Please select</option>
-            </select>
-        </div>
-        <h3>Visibility Information</h3>
-        <p style="margin-bottom: 0px;"><b>Public: </b>Everyone who is signed in can access this course.</p>
-        <p><b>Private: </b>Only people you add by email will have access to the course.</p>
-        <div>
-            <select asp-for="visibility" asp-items="Html.GetEnumSelectList<Visible>()" class="form-control">
-                <option selected="selected" value="">Please select</option>
-            </select>
-        </div>
-        <div>
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>
-
-        <div class="container container-center">
-            <div id="modules-added" class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3"></div>
-        </div>
-    </form>
-</div>
+    <h3>Publish information</h3>
+    <p><b>Publish Now: </b>This course will be available immedIately.</p>
+    <p><b>Publish Later: </b>This course will not be available immedIately. You will be able to publish it after
+        modules
+        have been added.</p>
+    <div>
+        <select asp-for="published" asp-items="Html.GetEnumSelectList<Publish>()" class="form-control">
+            <option selected="selected" value="">Please select</option>
+        </select>
+    </div>
+    <h3>Visibility Information</h3>
+    <p><b>Public: </b>Everyone who is signed in can access this course.</p>
+    <p><b>Private: </b>Only people you add by email will have access to the course.</p>
+    <div>
+        <select asp-for="visibility" asp-items="Html.GetEnumSelectList<Visible>()" class="form-control">
+            <option selected="selected" value="">Please select</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
     const handleFileUpload = async (e) => {
