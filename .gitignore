@@ -120,3 +120,4 @@ src/.vs/config/applicationhost.config
 app.db-shm
 app.db-wal
 app.db
+/drop_all_tables.sql
