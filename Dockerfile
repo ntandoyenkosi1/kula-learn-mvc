@@ -5,7 +5,7 @@ COPY *.csproj ./
 RUN dotnet restore --disable-parallel
 
 COPY . .
-RUN dotnet publish -c Release -o out
+RUN dotnet publish kula-learn-mvc.sln -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
