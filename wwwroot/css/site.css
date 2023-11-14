@@ -1,18 +1,137 @@
 html {
-	font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
 }
 
-@media (min-width: 768px) {
-	html {
-		font-size: 16px;
-	}
+.logo {
+    width: 100px;
 }
 
-html {
-	position: relative;
-	min-height: 100%;
+header nav, header nav div, header nav ul, .why {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-body {
-	margin-bottom: 60px;
+ul {
+    list-style-type: none;
+}
+
+div > img {
+    width: 15vw;
+}
+
+h2, .homepage ul, .homepage div div, .homepage > div:last-child {
+    text-align: center;
+}
+
+.why > div {
+    padding: 20px;
+    border: solid 2px #198754;
+    width: 33vw;
+    height: 45vh;
+    margin: 5px;
+}
+
+body > div {
+    margin: 0;
+    padding: 0px;
+}
+
+footer {
+    height: 10vh;
+    background-color: #d5e1ff;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+header {
+    height: 10vh;
+}
+
+body > div {
+    height: 80vh;
+    text-align: center;
+}
+
+.login {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 12px 14px 20px 10px #f6f6f6;
+    margin-left: 25vw;
+    margin-top: 10vh;
+}
+
+.register {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 12px 14px 20px 10px #f6f6f6;
+    margin-left: 10vw;
+    margin-top: 10vh;
+    height: 50vh;
+}
+
+input[class=form-control] {
+    width: 40vw !important;
+}
+
+.register .form-control {
+    width: 70vw !important;
+}
+
+.module input, textarea, .course .form-control {
+    width: 80vw !important;
+    margin-left: 10vw;
+}
+
+.courses > div {
+    border: solid #198754 2px;
+    width: 50vw;
+}
+
+.courses {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modules {
+    text-align: left;
+}
+
+    .modules > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+
+.preview > ul {
+    min-width: 15vw;
+    text-align: left;
+    max-width: 20vw;
+    border-right: solid #198754 2px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.preview > div {
+    padding-left: 1vw;
+    text-align: left;
+    max-width: 84vw;
+    min-width: 79vw;
+}
+
+.preview {
+    display: flex;
+    height: 80vh;
+}
+button{
+    width:5vw;
 }

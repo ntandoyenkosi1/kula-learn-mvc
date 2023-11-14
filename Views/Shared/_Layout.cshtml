@@ -10,22 +10,22 @@
         <Title>@ViewData["Title"] - KulaMVC</Title>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/KulaMVC.styles.css" asp-append-version="true" />
     </head>
 
     <body>
         <header>
             <nav>
+                <div>
                 <a asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="https://i.ibb.co/1GgrKCJ/goat.png" alt="logo" />
+                    <img class="logo" src="https://i.ibb.co/1GgrKCJ/goat.png" alt="logo" />
                 </a>
                 <a asp-area="" asp-controller="Home" asp-action="Index">
                     <h1>Kula Learn</h1>
-                </a>
+                </a></div>
                 <partial name="_LoginPartial" />
             </nav>
         </header>
-        <div class="container">
+        <div>
         @RenderBody()
         </div>
         <footer>
@@ -37,7 +37,8 @@
         }
         else
         {
-                <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="Courses" asp-action="Index">Courses</a>
         }
         </footer>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>

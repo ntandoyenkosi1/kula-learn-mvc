@@ -1,7 +1,7 @@
 ﻿@page
 @model LoginModel
 
-<div style="background-color: white;" class="page shadow p-3 mb-5rounded">
+<div class="login">
     <h3>Login</h3>
     <form id="account" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -28,16 +28,16 @@
         </div>
         <div>
             <p>
-                <a style="color: black; text-decoration: underline;" id="forgot-password"
+                <a  id="forgot-password"
                     asp-page="./ForgotPassword">Forgot your password?</a>
             </p>
             <p>
-                <a style="color: black; text-decoration: underline;" asp-page="./Register"
+                <a  asp-page="./Register"
                     asp-route-returnUrl="@Model.ReturnUrl">Register as a new
                     user</a>
             </p>
             <p>
-                <a style="color: black; text-decoration: underline;" id="resend-confirmation"
+                <a id="resend-confirmation"
                     asp-page="./ResendEmailConfirmation">Resend email
                     confirmation</a>
             </p>

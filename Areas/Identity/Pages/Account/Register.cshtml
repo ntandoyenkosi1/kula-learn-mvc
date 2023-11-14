@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Register";
 }
-<div style="background-color: white;" class="page shadow p-3 mb-5 rounded">
+<div class="register">
     <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <h3>Register</h3>
         <hr />
@@ -29,20 +29,8 @@
                 autocomplete="new-password" aria-required="true" />
             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
         </div>
-        @* <div class="input-group mb-3">
-            <input asp-for="Input.ConfirmPassword" placeholder="Confirm Password" class="form-control"
-            autocomplete="new-password" aria-required="true" />
-            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div> *@
-        @**@
         <div class="input-group mb-3">
             <label class="input-group-text" for="roleSelect">You are a:</label>
-            @* <select class="form-select" id="roleSelect" required="">
-                <option>Choose... </option>
-                <option value="student">Student</option>
-                <option value="instructor">Instructor</option>
-                </select> *@
-
             <select asp-for="Input.Role" asp-items="Html.GetEnumSelectList<Roles>()" class="form-control">
                 <option selected="selected" value="">Please select</option>
             </select>

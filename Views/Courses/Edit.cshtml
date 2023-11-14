@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<div>
+<div class="course">
     <form asp-action="Edit">
         <div>
             <div>
@@ -12,7 +12,6 @@
             </div>
         </div>
         <a asp-action="Details" asp-route-id="@Model.ID">Edit Modules</a>
-        <div>
             <h4>@Model.Title</h4>
             <div>
                 <label asp-for="Title" class="control-label"><b>Update the course Title.</b></label>

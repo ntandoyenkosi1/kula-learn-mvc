@@ -4,14 +4,23 @@
     ViewData["Title"] = "Details";
 }
 <a asp-controller="Modules" asp-action="Create" asp-route-CollectionID=@ViewData["collection"]>Add Modules</a>
-<div class="container">
-    @foreach (var item in Model)
-    {
-        <div>
-            <h4>@item.Title</h4>
-            <p>@item.ShortDescription</p>
-            <a asp-controller="Modules" asp-action="Edit" asp-route-id="@item.ID" class="btn">Edit</a>
-            <a asp-controller="Modules" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
-        </div>
+<div class="modules">
+    @{
+        var count = 0;
+        @foreach (var item in Model)
+        {
+            count++;
+            <div>
+                <div>
+                    <h4>@count. @item.Title</h4>
+                    <p>@item.ShortDescription</p>
+                </div>
+                <div>
+                    <a asp-controller="Modules" asp-action="Edit" asp-route-id="@item.ID" class="btn btn-info">Edit</a>
+                    <a asp-controller="Modules" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+            <hr />
+        }
     }
 </div>
