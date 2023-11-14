@@ -2,18 +2,19 @@
 @using Markdig
 
 <div class="preview">
-    <ul>@{
+    <ul>
+        @{
             var count = 0;
             @foreach (var item in Model)
-        {
+            {
+
                 count++;
                 <a asp-action="Preview" asp-route-CollectionID="@item.CollectionID" asp-route-moduleID="@item.ID">
-                    <li class="file">
-                        @count.
-                         @item.Title
-                    </li>
+                    @count.
+                    @item.Title
                 </a>
-        }
+             
+            }
         }
     </ul>
     <div>
@@ -23,16 +24,15 @@
             {
                 var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
                 var shortString = Markdown.ToHtml((String)ViewData["ShortDescription"]!, pipeline);
-                    <div>@Html.Raw(shortString)</div>
+                <div>@Html.Raw(shortString)</div>
             }
-                <hr>
+            <hr>
             if ((String)ViewData["LongDescription"]! != null)
             {
                 var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
                 var longString = Markdown.ToHtml((String)ViewData["LongDescription"]!, pipeline);
-                    <div>@Html.Raw(longString)</div>
+                <div>@Html.Raw(longString)</div>
             }
         }
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

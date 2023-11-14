@@ -10,11 +10,9 @@
     <img b-h1z1mxik6a="" class="logo" src="https://i.ibb.co/1GgrKCJ/goat.png" alt="logo">
     <h1>Welcome to Kula Learn</h1>
 </div>
-
-<div>Browse</div>
 <div>
     <div>
-    We offer beginner and more advanced courses.
+        We offer beginner and more advanced courses.
     </div>
     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Instructor"))
     {
@@ -39,7 +37,7 @@
             <div>
                 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Student"))
                 {
-                    <a asp-route-CollectionID="@item.ID" asp-controller="Modules" asp-action="Preview">Enroll</a>
+                    <a asp-route-CollectionID="@item.ID" asp-controller="Modules" asp-action="Preview">View Course</a>
                 }
                 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Instructor"))
                 {
@@ -53,14 +51,15 @@
                     <a asp-route-id="@item.ID" asp-action="Delete">Delete</a>
                 }
             </div>
-            <div>Created at:
+            <div>
+                Created at:
                 @{
                     System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
                     dtDateTime = dtDateTime.AddSeconds(item.CreatedAt).ToLocalTime();
                 }
                 @dtDateTime
             </div>
-            <div>Last modified by: Instructor</div>
+            <div>Last modified by: <b>Instructor</b></div>
         </div>
     }
 </div>

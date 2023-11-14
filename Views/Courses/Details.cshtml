@@ -3,7 +3,9 @@
 @{
     ViewData["Title"] = "Details";
 }
+<div class="course">
 <a asp-controller="Modules" asp-action="Create" asp-route-CollectionID=@ViewData["collection"]>Add Modules</a>
+</div>
 <div class="modules">
     @{
         var count = 0;

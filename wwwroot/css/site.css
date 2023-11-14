@@ -34,14 +34,8 @@ h2, .homepage ul, .homepage div div, .homepage > div:last-child {
     margin: 5px;
 }
 
-body > div {
-    margin: 0;
-    padding: 0px;
-}
-
 footer {
     height: 10vh;
-    background-color: #d5e1ff;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -52,8 +46,10 @@ header {
 }
 
 body > div {
-    height: 80vh;
+    min-height: 80vh;
     text-align: center;
+    margin: 0;
+    padding: 0px;
 }
 
 .login {
@@ -91,9 +87,11 @@ input[class=form-control] {
 }
 
 .courses > div {
-    border: solid #198754 2px;
-    width: 50vw;
+    border: solid #45d190 2px;
+    width: 70vw;
+    margin: 10px;
 }
+
 
 .courses {
     display: flex;
@@ -132,6 +130,70 @@ input[class=form-control] {
     display: flex;
     height: 80vh;
 }
-button{
-    width:5vw;
+
+button {
+    width: 5vw;
+}
+
+a {
+    text-decoration: none;
+    color: #787878;
+}
+
+    a:hover {
+        color: #2f2e2e;
+    }
+
+li a, button, .courses a, input[type=submit], .course a {
+    background-color: #d2bdff;
+    width: 100px;
+    display: flex;
+    height: 4vh;
+    border-radius: 8px;
+    border-color: #d2bdff;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+}
+.courses a, .login button, .register button, .course input[type=submit], .course a{
+    width: 50%;
+    margin-left: 25%;
+    color: black;
+}
+    li a:hover, .homepage a:hover, button:hover, .courses a:hover {
+        background-color: #d6cceb;
+        border: none;
+    }
+
+header, footer {
+    background-color: #eae0ff;
+}
+.homepage a {
+    background-color: #d2bdff;
+    width: 30vw;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 35vw;
+    font-size: large;
+}
+
+.login a{
+    text-decoration:underline;
+}
+.courses a{
+    margin-bottom:10px;
+}
+.preview>ul>a{
+    display:block;
+}
+    .preview > ul > a::after {
+        text-decoration: underline;
+    }
+    .course img{
+        max-width:30vw;
+    }
+.modue input[type=submit]{
+    margin-left:0% !important;
 }
