@@ -3,7 +3,15 @@ Kula Learn is a learning management system. It allows instructors to add courses
 
 ### Production environment
 
-This application is currently not deployed on a production environment.
+This application is currently deployed via Cloud Run here: https://kula-learn-mvc-cck37mrz7a-ue.a.run.app/.
+
+### Screenshots
+
+![Welcome Page](https://res.cloudinary.com/db1z5jvko/image/upload/v1700090150/msedge_cIDE6Gy3bb_oylxld.png)
+![All Courses View - Instructor](https://res.cloudinary.com/db1z5jvko/image/upload/v1700090150/msedge_KlgaJWFqyE_xjend1.png)
+![Single Course View](https://res.cloudinary.com/db1z5jvko/image/upload/v1700090404/msedge_29uZJS7OvH_lp4en3.png)
+![Registration Page](https://res.cloudinary.com/db1z5jvko/image/upload/v1700090150/msedge_WPiQ1LoEQ8_ebgyhe.png)
+
 
 ### Features
 
@@ -44,4 +52,4 @@ Run project
 ```shell
 dotnet run
 ```
-Then navigate to https://localhost:7009 to start the application
+Then navigate to https://localhost:44344/ to start the application

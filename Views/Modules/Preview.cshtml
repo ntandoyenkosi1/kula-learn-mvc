@@ -13,11 +13,16 @@
                     @count.
                     @item.Title
                 </a>
-             
+
             }
         }
     </ul>
     <div>
+        <span onclick="toggle()" title="Select next course">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg>
+        </span>
         <h1>@ViewData["Title"]</h1>
         @{
             if ((String)ViewData["ShortDescription"]! != null)
@@ -36,3 +41,19 @@
         }
     </div>
 </div>
+<script>
+    function toggle() {
+        let nav = document.querySelector(".preview>ul")
+        let content = document.querySelector(".preview>div")
+        if (nav.style.display == "block") {
+            content.style.width = "100%"
+            nav.style.display = "none"
+            return
+        }
+        content.style.width = "60vw"
+        //content.style.marginLeft="50vw"
+        nav.style.display = "block"
+        nav.style.width = "40vw"
+    }
+
+</script>
