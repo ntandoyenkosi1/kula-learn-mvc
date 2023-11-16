@@ -45,7 +45,7 @@ namespace KulaMVC.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            _context=context;
+            _context = context;
         }
 
         /// <summary>
@@ -129,18 +129,21 @@ namespace KulaMVC.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.EmailConfirmed = true;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                var userDetails = new User{
-                    ID=user.Id,
-                    FirstName=Input.FirstName,
-                    LastName=Input.LastName
+                var userDetails = new User
+                {
+                    ID = user.Id,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName
                 };
-                var ro=_context.Roles.Where(r=>r.Name==Input.Role.ToString()).SingleOrDefault();
-                var role= new IdentityUserRole<string>{
-                    UserId=user.Id,
-                    RoleId=ro.Id
+                var ro = _context.Roles.Where(r => r.Name == Input.Role.ToString()).SingleOrDefault();
+                var role = new IdentityUserRole<string>
+                {
+                    UserId = user.Id,
+                    RoleId = ro.Id
                 };
                 _context.Add(role);
                 if (result.Succeeded)
@@ -159,16 +162,9 @@ namespace KulaMVC.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return LocalRedirect(returnUrl);
+                    
                 }
                 foreach (var error in result.Errors)
                 {
