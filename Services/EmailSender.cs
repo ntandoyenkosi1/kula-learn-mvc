@@ -24,7 +24,7 @@ public class EmailSender : IEmailSender
         {
             throw new Exception("Null SendGridKey");
         }
-        await Execute(Options.SendGridKey, subject, message, toEmail);
+       // await Execute(Options.SendGridKey, subject, message, toEmail);
     }
 
     public async Task Execute(string apiKey, string subject, string message, string toEmail)

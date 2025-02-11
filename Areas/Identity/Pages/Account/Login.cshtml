@@ -3,15 +3,16 @@
 
 <div class="login">
     <h3>Login</h3>
+    <label><i style="font-size: 12px;">Test credentials provided</i></label>
     <form id="account" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="input-group mb-3">
-            <input asp-for="Input.Email" class="form-control" placeholder="Email" autocomplete="username"
+            <input asp-for="Input.Email" class="form-control" value="student@gmail.com" placeholder="Email" autocomplete="username"
                 aria-required="true" />
             <span asp-validation-for="Input.Email" class="text-danger"></span>
         </div>
         <div class="input-group mb-3">
-            <input asp-for="Input.Password" placeholder="Password" class="form-control" autocomplete="current-password"
+            <input asp-for="Input.Password" value="student@gmail.comA1" placeholder="Password" class="form-control" autocomplete="current-password"
                 aria-required="true" />
             <span asp-validation-for="Input.Password" class="text-danger"></span>
         </div>
